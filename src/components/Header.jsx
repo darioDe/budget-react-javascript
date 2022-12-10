@@ -1,4 +1,5 @@
 import React from 'react'
+import BudgetControl from './BudgetControl'
 import NewBudget from './NewBudget'
 
 const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
@@ -9,7 +10,9 @@ const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
       {/* CONDITIONAL RENDERING */}
       
       {isValidBudget ? (
-         <p> Cost Control </p>
+         <BudgetControl 
+            budget={budget}
+         />
       ) : (
          <NewBudget 
             budget={budget}
