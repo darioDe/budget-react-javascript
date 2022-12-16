@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import IconNewExpense from './assets/img/new-expense.svg'
 import Modal from './components/Modal';
+import { idGenerator } from './components/helpers'
+import IconNewExpense from './assets/img/new-expense.svg'
+import ExpenseList from './components/ExpenseList';
 
 function App() {
 
@@ -23,7 +25,15 @@ function App() {
 
   // SAVING EXPENSE FUNCTION
   const saveExpense = expense => {
-    setExpenses([...expenses, expense ])
+    expense.id = idGenerator();
+    expense.date = Date.now();
+    setExpenses([...expenses, expense ]);
+
+    setAnimatingModal(false);
+      
+      setTimeout(() => {
+         setModal(false);
+      }, 500);
   }
 
 
@@ -39,13 +49,20 @@ function App() {
 
       {/* ADD MORE EXPENSES BUTTON */}
       {isValidBudget && (
-        <div className='new-expense'>
-            <img 
-              src={IconNewExpense} 
-              alt="New Expense" 
-              onClick={handleNewExpense}
+        <>
+          <main>
+            <ExpenseList 
+              expenses={expenses}
             />
-        </div>
+          </main>
+          <div className='new-expense'>
+              <img 
+                src={IconNewExpense} 
+                alt="New Expense" 
+                onClick={handleNewExpense}
+              />
+          </div>
+        </>
       )}
       
       {/* BUDGET VALID && CLICK IN IMG-NEW-EXPENSE == OPEN MODAL */}

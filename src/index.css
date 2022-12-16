@@ -254,10 +254,10 @@ main {
     background-color: var(--clear-gray);
 }
 
-.list-amount {
+.list-expenses {
     margin-top: 5rem;
 }
-.list-amount h2 {
+.list-expenses h2 {
     color: var(--gray-dark);
     font-weight: 900;
 }
@@ -275,7 +275,7 @@ main {
     width: 100%;
 }
 
-.cantidad-expense {
+.amount-expense {
     font-size: 2.4rem;
     color: var(--black);
     font-weight: 900;
@@ -291,7 +291,7 @@ main {
     width: 10rem;
 }
 
-.description-expense p {
+.description-expense  {
     margin: 0 0 0.3rem 0;
 }
 .description-expense .category {
