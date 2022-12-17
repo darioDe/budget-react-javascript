@@ -1,4 +1,6 @@
 import React from 'react'
+import { LeadingActions, SwipeableList, SwipeableListItem, SwipeAction, TrailingActions } from 'react-swipeable-list'
+import 'react-swipeable-list/dist/styles.css'
 import { formatDate  } from './helpers';
 import IconExpenses from '../assets/img/icon-expenses.svg'
 import IconFood from '../assets/img/icon-food.svg'
@@ -19,21 +21,45 @@ const iconsDictionary = {
   subscriptions : IconSubs,
 }
 
-const Expense = ({ expense }) => {
-   const { category, name, amount, id, date } = expense;
-  return (
-    <div className='expense shadow'>
-      <div className='content-expense'>
-         <img src={iconsDictionary[category]} alt="" />
-         <div className="description-expense">
-            <p className='category'> {category} </p>
-            <p className='name-expense'> {name} </p>
-            <p className="date-expense"> Added: {''} <span>{formatDate(date)}</span> </p>
-         </div>
 
-          <p className='amount-expense'> ${amount} </p>
-      </div>
-    </div>
+const Expense = ({ expense, setExpenseEdit }) => {
+  const { category, name, amount, id, date } = expense;
+
+  const leadingActions = () => (
+    <LeadingActions>
+      <SwipeAction onClick={() => setExpenseEdit(expense)}>
+        EDIT
+      </SwipeAction>
+    </LeadingActions>
+  )
+        
+  const trailingActions = () => (
+    <TrailingActions>
+      <SwipeAction onClick={() => console.log('delete')}>
+        DELETE
+      </SwipeAction>
+    </TrailingActions>
+  )
+
+  return (
+    <SwipeableList >
+      <SwipeableListItem
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
+      >
+        <div className='expense shadow'>
+          <div className='content-expense'>
+            <img src={iconsDictionary[category]} alt="" />
+            <div className="description-expense">
+                <p className='category'> {category} </p>
+                <p className='name-expense'> {name} </p>
+                <p className="date-expense"> Added: {''} <span>{formatDate(date)}</span> </p>
+            </div>
+          </div>
+              <p className='amount-expense'> ${amount} </p>
+        </div>
+      </SwipeableListItem>
+    </SwipeableList>
   )
 }
 

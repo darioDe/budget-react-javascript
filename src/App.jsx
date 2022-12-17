@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Modal from './components/Modal';
 import { idGenerator } from './components/helpers'
@@ -12,6 +12,15 @@ function App() {
   const [modal, setModal] = useState(false)
   const [animatingModal, setAnimatingModal] = useState(false)
   const [expenses, setExpenses] = useState([])
+  const [expenseEdit, setExpenseEdit] = useState({})
+
+  useEffect(() => {
+    
+    if (Object.keys(expenseEdit).length > 0) {
+      handleNewExpense();
+    }
+  }, [expenseEdit]);
+  
 
 
   // OPEN MODAL FUNCTION
@@ -21,7 +30,7 @@ function App() {
     setTimeout(() => {
       setAnimatingModal(true);
     }, 500);
-  }
+  };
 
   // SAVING EXPENSE FUNCTION
   const saveExpense = expense => {
@@ -34,13 +43,14 @@ function App() {
       setTimeout(() => {
          setModal(false);
       }, 500);
-  }
+  };
 
 
 
   return (
-    <div>
-      <Header 
+    <div className={modal ? 'fixing' : ''}>
+      <Header
+        expenses={expenses} 
         budget={budget}
         setBudget={setBudget}
         isValidBudget={isValidBudget}
@@ -53,6 +63,7 @@ function App() {
           <main>
             <ExpenseList 
               expenses={expenses}
+              setExpenseEdit={setExpenseEdit}
             />
           </main>
           <div className='new-expense'>
