@@ -1,14 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import CloseBtn from '../assets/img/close.svg'
 import Msg from './Msg';
 
-const Modal = ({ setModal, animatingModal, setAnimatingModal, saveExpense }) => {
+const Modal = ({ 
+   setModal, 
+   animatingModal, 
+   setAnimatingModal,
+   saveExpense, 
+   expenseEdit, 
+   setExpenseEdit 
+}) => {
 
    const [msg, setMsg] = useState('')
    const [name, setName] = useState('');
    const [amount, setAmount] = useState('');
    const [category, setCategory] = useState('');
+   const [id, setId] = useState('')
+   const [date, setDate] = useState('')
+
+   useEffect(() => {
+      if (Object.keys(expenseEdit).length > 0) {
+         setName(expenseEdit.name);
+         setCategory(expenseEdit.category);
+         setAmount(expenseEdit.amount);
+         setId(expenseEdit.id);
+         setDate(expenseEdit.date);
+      }
+   }, [])
+   
 
 
    // FORM VALIDATION
@@ -24,13 +44,14 @@ const Modal = ({ setModal, animatingModal, setAnimatingModal, saveExpense }) => 
          return;
       }
       
-      saveExpense({name, amount, category})
+      saveExpense({name, amount, category, id, date});
    }
 
    // CLICK IN IMG-CLOSE-MODAL 
    const closeModal = () => {
       setAnimatingModal(false);
-      
+      setExpenseEdit({})
+
       setTimeout(() => {
          setModal(false);
       }, 500);
@@ -51,7 +72,7 @@ const Modal = ({ setModal, animatingModal, setAnimatingModal, saveExpense }) => 
          onSubmit={handleSubmit}   
       >
          
-         <legend> New Expense </legend>
+         <legend> {expenseEdit.name ? 'Edit Expense' : 'New Expense'} </legend>
          {msg && <Msg type='error'>{msg}</Msg> }
          
          <div className='field'>
@@ -97,7 +118,10 @@ const Modal = ({ setModal, animatingModal, setAnimatingModal, saveExpense }) => 
             </select>
          </div>
 
-         <input type='submit' value='Add Expense'/>
+         <input 
+            type='submit' 
+            value={expenseEdit.name ? 'Save Change' : 'Add Expense'}
+         />
       </form>
     </div>
   )

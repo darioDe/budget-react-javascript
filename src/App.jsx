@@ -17,7 +17,11 @@ function App() {
   useEffect(() => {
     
     if (Object.keys(expenseEdit).length > 0) {
-      handleNewExpense();
+      setModal(true);
+
+    setTimeout(() => {
+      setAnimatingModal(true);
+    }, 500);
     }
   }, [expenseEdit]);
   
@@ -26,6 +30,7 @@ function App() {
   // OPEN MODAL FUNCTION
   const handleNewExpense = () => {
     setModal(true);
+    setExpenseEdit({});
 
     setTimeout(() => {
       setAnimatingModal(true);
@@ -34,9 +39,16 @@ function App() {
 
   // SAVING EXPENSE FUNCTION
   const saveExpense = expense => {
-    expense.id = idGenerator();
-    expense.date = Date.now();
-    setExpenses([...expenses, expense ]);
+
+    if (expense.id) {
+      const updatingExpenses = expenses.map(expenseState => expenseState.id === expense.id ? expense : expenseState);
+      setExpenses(updatingExpenses);
+      setExpenseEdit({});
+    } else {
+      expense.id = idGenerator();
+      expense.date = Date.now();
+      setExpenses([...expenses, expense ]);   
+    }
 
     setAnimatingModal(false);
       
@@ -45,7 +57,11 @@ function App() {
       }, 500);
   };
 
-
+  // DELETE DATA FUNCTION 
+  const deleteExpense = id => {
+    const updatingExpenses = expenses.filter (expense => expense.id !== id);
+    setExpenses(updatingExpenses);
+ }
 
   return (
     <div className={modal ? 'fixing' : ''}>
@@ -64,6 +80,7 @@ function App() {
             <ExpenseList 
               expenses={expenses}
               setExpenseEdit={setExpenseEdit}
+              deleteExpense={deleteExpense}
             />
           </main>
           <div className='new-expense'>
@@ -83,6 +100,8 @@ function App() {
           animatingModal={animatingModal}
           setAnimatingModal={setAnimatingModal}
           saveExpense={saveExpense}
+          expenseEdit={expenseEdit}
+          setExpenseEdit={setExpenseEdit}
         /> 
       }
     </div>
