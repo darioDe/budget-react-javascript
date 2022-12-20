@@ -7,12 +7,17 @@ import ExpenseList from './components/ExpenseList';
 
 function App() {
 
-  const [budget, setBudget] = useState(0);
+  const [budget, setBudget] = useState(
+    Number(localStorage.getItem('budget')) ?? 0
+  );
+  
+  const [expenses, setExpenses] = useState(
+    localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : []);
+  
+  const [expenseEdit, setExpenseEdit] = useState({});
   const [isValidBudget, setIsValidBudget] = useState(false);
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
   const [animatingModal, setAnimatingModal] = useState(false)
-  const [expenses, setExpenses] = useState([])
-  const [expenseEdit, setExpenseEdit] = useState({})
 
   useEffect(() => {
     
@@ -25,7 +30,26 @@ function App() {
     }
   }, [expenseEdit]);
   
+  // SETTING LOCALSTORAGE FOR BUDGET
+  useEffect(() => {
+    localStorage.setItem('budget', budget ?? 0);
+  }, [budget]);
 
+  // SETTING LOCALSTORAGE FOR EXPENSES
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses) ?? []);
+  }, [expenses]);
+
+  // GETTING LOCALSTORAGE FOR BUDGET AND RENDERIZE 'ISVALIDBUDGET'
+  useEffect(() => {
+    const budgetLS = Number(localStorage.getItem('budget')) ?? 0;
+
+    if (budgetLS > 0) {
+      setIsValidBudget(true);
+    };
+  }, [])
+  
+  
 
   // OPEN MODAL FUNCTION
   const handleNewExpense = () => {
