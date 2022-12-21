@@ -4,6 +4,7 @@ import Modal from './components/Modal';
 import { idGenerator } from './components/helpers'
 import IconNewExpense from './assets/img/new-expense.svg'
 import ExpenseList from './components/ExpenseList';
+import Filters from './components/Filters';
 
 function App() {
 
@@ -17,7 +18,9 @@ function App() {
   const [expenseEdit, setExpenseEdit] = useState({});
   const [isValidBudget, setIsValidBudget] = useState(false);
   const [modal, setModal] = useState(false);
-  const [animatingModal, setAnimatingModal] = useState(false)
+  const [animatingModal, setAnimatingModal] = useState(false);
+  const [filter, setFilter] = useState('');
+  const [expensesFilters, setExpensesFilters] = useState([])
 
   useEffect(() => {
     
@@ -39,6 +42,16 @@ function App() {
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses) ?? []);
   }, [expenses]);
+
+  // SELECT FILTER FOR CATEGORY
+  useEffect(() => {
+    if (filter) {
+      const expenseFilter = expenses.filter( expense => expense.category === filter);
+
+      setExpensesFilters(expenseFilter);
+    }
+  }, [filter])
+  
 
   // GETTING LOCALSTORAGE FOR BUDGET AND RENDERIZE 'ISVALIDBUDGET'
   useEffect(() => {
@@ -91,6 +104,7 @@ function App() {
     <div className={modal ? 'fixing' : ''}>
       <Header
         expenses={expenses} 
+        setExpenses={setExpenses}
         budget={budget}
         setBudget={setBudget}
         isValidBudget={isValidBudget}
@@ -101,10 +115,16 @@ function App() {
       {isValidBudget && (
         <>
           <main>
+            <Filters 
+              filter={filter}
+              setFilter={setFilter}
+            />
             <ExpenseList 
               expenses={expenses}
               setExpenseEdit={setExpenseEdit}
               deleteExpense={deleteExpense}
+              filter={filter}
+              expensesFilters={expensesFilters}
             />
           </main>
           <div className='new-expense'>
