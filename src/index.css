@@ -10,8 +10,12 @@
 body {
     font-size: 1.6rem;
     font-family: 'Roboto', sans-serif;
-    background-color: var(--clear-gray);
+    background-image: url('./assets/img/coin-background.jpg');
+    backdrop-filter: brightness(40%);
+    background-attachment: fixed;
+    /* height: 100vh;     */
 }
+
 html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -38,19 +42,15 @@ h2 {
     box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
     -webkit-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
     -moz-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
-    background-color: var(--white);
+    background-color: #c17d0a54;
     padding: 4rem;
     border-radius: 1.2rem;
-}
-
-header {
-    background-color: var(--blue);
 }
 
 header h1 {
     padding: 3rem 0;
     margin: 0;
-    color: var(--white);
+    color: #ffd082;
     text-align: center;
 
     text-transform: uppercase;
@@ -196,7 +196,7 @@ header h1 {
 }
 .content-budget p {
     font-weight: 400;
-    color: var(--gray-dark);
+    color: #ffffff;
     font-size: 2.4rem;
     text-align: center;
 }
@@ -211,15 +211,15 @@ header h1 {
 }
 .content-budget span {
     font-weight: 900;
-    color: var(--blue);
+    color: #ffd082;
 }
 .reset-app {
     border: none;
-    background-color: #db2777;
+    background-color: #620808;
     padding: 1rem;
     width: 100%;
     text-align: center;
-    color: var(--white);
+    color: #ffffff;
     text-transform: uppercase;
     font-weight: 900;
     border-radius: 1rem;
