@@ -4,7 +4,7 @@
     --gray1: #46423e;
     --gray2: #475364;
     --gray3: #cecece;
-    --black: #000;
+    --green: rgb(104, 167, 128);
 }
 
 body {
@@ -153,11 +153,10 @@ header h1 {
 }
 .container-budget {
     margin-top: -5rem;
-
+    margin-bottom: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     transform: translateY(5rem);
 }
 .two-columns {
@@ -321,7 +320,7 @@ main {
 }
 
 .modal {
-    position: absolute;
+    position: fixed;
     background-color: rgb(0 0 0 / 0.92);
     top: 0;
     left: 0;
@@ -373,7 +372,7 @@ body .modal {
 
 /*** SWIPE LIST OVERRIDES **/
 .swipe-action__leading {
-    background-color: var(--blue);
+    background-color: var(--green);
     color: var(--white);
     margin-bottom: 2rem;
 }
