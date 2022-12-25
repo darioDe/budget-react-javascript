@@ -1,29 +1,32 @@
 :root {
-    --blue: #3b82f6;
+    --lblue: #76a2b9;
     --white: #ffffff;
-    --clear-gray: #f5f5f5;
-    --gray: #94a3b8;
-    --gray-dark: #64748b;
+    --gray1: #46423e;
+    --gray2: #475364;
+    --gray3: #cecece;
     --black: #000;
 }
 
 body {
     font-size: 1.6rem;
     font-family: 'Roboto', sans-serif;
-    background-image: url('./assets/img/coin-background.jpg');
-    backdrop-filter: brightness(40%);
-    background-attachment: fixed;
+    background-color: var(--gray3);
     /* height: 100vh;     */
 }
 
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+    /* box-sizing: inherit; */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .fixing {
@@ -31,26 +34,27 @@ html {
     height: 100vh;
 }
 
+
 h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
 }
 h2 {
-    font-size: 3rem;
+    font-size: 1.8rem;
 }
 
 .shadow {
     box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
     -webkit-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
     -moz-box-shadow: 0px 9px 10px -10px rgba(0, 0, 0, 0.51);
-    background-color: #c17d0a54;
-    padding: 4rem;
+    background-color: var(--lblue);
+    padding: 2.5rem;
     border-radius: 1.2rem;
 }
 
 header h1 {
     padding: 3rem 0;
     margin: 0;
-    color: #ffd082;
+    color: var(--gray1);
     text-align: center;
 
     text-transform: uppercase;
@@ -59,48 +63,46 @@ header h1 {
 .form {
     width: 95%;
     margin: 0 auto;
-    padding: 10rem 0;
+    padding: 5rem 0;
 }
-@media (min-width: 768px) {
-    .form {
-        padding: 5rem 0;
-        width: 60rem;
-    }
-}
+
 .form legend {
-    font-size: 3.6rem;
+    font-size: 2.5rem;
     text-align: center;
     display: block;
     text-transform: uppercase;
     color: var(--white);
     margin-bottom: 4rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--blue);
+    border-bottom: 2px solid var(--lblue);
 }
 .form .field {
     display: grid;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .form label {
-    color: var(--blue);
-    font-size: 2.8rem;
+    color: var(--gray1);
+    font-size: 1.8rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .form input[type="text"],
 .form input[type="number"] {
-    background-color: var(--clear-gray);
+    background-color: var(--white);
     border-radius: 1rem;
     padding: 1rem;
+    padding: 0.5rem;
     border: none;
     flex: 1;
     font-size: 1.6rem;
+    width: 100%;
 }
 .form input[type="submit"] {
     background-color: #1048a4;
     border: none;
+    border-radius: 1rem;
     padding: 1rem;
     text-align: center;
     margin-top: 2rem;
@@ -111,12 +113,7 @@ header h1 {
     width: 100%;
     transition: background-color 300ms ease;
 }
-@media (min-width: 768px) {
-    .form input[type="submit"] {
-        display: block;
-        padding: 1rem 5rem;
-    }
-}
+    
 .form input[type="submit"]:hover {
     background-color: #042a67;
     cursor: pointer;
@@ -124,11 +121,12 @@ header h1 {
 
 .form select {
     flex: 1;
-    padding: 1rem;
+    width: 100%;
+    padding: 0.5rem;
     border: none;
     border-radius: 1rem;
     text-align: center;
-    background-color: var(--clear-gray);
+    background-color: white;
 }
 
 .alert {
@@ -166,29 +164,19 @@ header h1 {
     flex-direction: column;
 }
 .two-columns :first-child {
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem; */
+    margin-bottom: 1.5rem;
 }
-@media (min-width: 768px) {
-    .two-columns {
-        flex-direction: row;
-        align-items: center;
-        gap: 4rem;
-    }
-    .two-columns > div {
-        width: 50%;
-    }
-    .two-columns :first-child {
-        margin-bottom: 0;
-    }
-}
+    
+
 .form input[type="text"].new-budget, 
 .form input[type="number"].new-budget {
-    font-size: 2.8rem;
+    font-size: 2rem;
     text-align: center;
 }
 
 .container-budget svg {
-    width: 25rem;
+    width: 16rem;
 }
 
 .content-budget {
@@ -196,22 +184,18 @@ header h1 {
 }
 .content-budget p {
     font-weight: 400;
-    color: #ffffff;
-    font-size: 2.4rem;
+    color: var(--gray3);
+    font-size: 1.8rem;
     text-align: center;
 }
-@media (min-width: 768px) {
-    .content-budget p {
-        text-align: left;
-    }
-}
+
 .content-budget p.negativo,
 .content-budget p.negativo span {
-    color: red;
+    color: #c41919;
 }
 .content-budget span {
     font-weight: 900;
-    color: #ffd082;
+    color: var(--gray1);
 }
 .reset-app {
     border: none;
@@ -241,10 +225,11 @@ main {
     gap: 2rem;
 }
 .filters label {
-    font-size: 3rem;
+    font-size: 1.8rem;
     font-weight: 900;
-    color: var(--gray-dark);
+    color: var(--gray1);
 }
+
 .filters select {
     flex: 1;
     padding: 1rem;
@@ -258,12 +243,14 @@ main {
     margin-top: 5rem;
 }
 .list-expenses h2 {
-    color: var(--gray-dark);
+    color: var(--gray1);
     font-weight: 900;
+    padding-bottom: 2rem;
 }
 .no-expenses {
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
 }
 
 .expense {
@@ -295,7 +282,7 @@ main {
     margin: 0 0 0.3rem 0;
 }
 .description-expense .category {
-    color: var(--gray);
+    color: var(--gray2);
     font-size: 1.6rem;
     font-weight: 900;
     text-transform: uppercase;
@@ -304,7 +291,7 @@ main {
     margin-bottom: 1rem;
 }
 .description-expense .name-expense {
-    color: var(--gray-dark);
+    color: var(--gray1);
     font-size: 2.4rem;
     font-weight: 700;
 }
@@ -314,7 +301,7 @@ main {
 .description-expense .date-expense {
     font-size: 1.8rem;
     font-weight: 900;
-    color: var(--gray-dark);
+    color: var(--gray2);
 }
 .description-expense .date-expense span {
     font-weight: 400;
@@ -345,8 +332,8 @@ main {
     position: absolute;
     right: 3rem;
     top: 3rem;
-    width: 3rem;
-    height: 3rem;
+    width: 1.8rem;
+    height: 1.8rem;
 }
 .modal .close-modal img {
     width: 100%;
@@ -354,7 +341,7 @@ main {
 
 .modal .form {
     max-width: 80rem;
-    width: 40rem;
+    width: 50%;
     transition-property: all;
     transition-duration: 300ms;
     transition-timing-function: ease-in;
@@ -403,4 +390,93 @@ body .modal {
     align-items: center;
     font-size: 2.4rem;
     text-align: right;
+}
+
+@media (min-width: 768px) {
+    .form {
+        padding: 5rem 0;
+        width: 60rem;
+    }
+
+    .form input[type="submit"] {
+        display: block;
+        padding: 1rem 5rem;
+    }
+
+    .two-columns {
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+    }
+    .two-columns > div {
+        width: 50%;
+    }
+    .two-columns :first-child {
+        margin-bottom: 0;
+    }
+
+    .content-budget p {
+        text-align: left;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+
+    .shadow {
+        padding: 4rem;
+    }
+
+    .form {
+        padding: 10rem 0;
+    }
+
+    .form legend {
+        font-size: 3.6rem;
+    }
+
+    .form .field {
+        margin-bottom: 2rem;
+    }
+
+    .form label {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .two-columns :first-child {
+        margin-bottom: 4rem;
+    }
+
+    .form select {
+        padding: 1rem;
+    }
+
+    .container-budget svg {
+        width: 25rem;
+    }
+
+    .content-budget p {
+        font-size: 2.4rem;
+    }
+
+    .filters label {
+        font-size: 3rem;
+    }
+
+    .no-expenses {
+        font-size: 2.2rem;
+    }
+
+    .modal .close-modal {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .modal .form {
+        width: 40rem;
+    }
 }
