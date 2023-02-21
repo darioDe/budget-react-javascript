@@ -1,4 +1,4 @@
-COST-PLANIFICATOR-APP
+Budget App
 
 This budget tracking application is made with HTML, CSS, JavaScript, and React.js. The application uses the React-Swipeable-List and React-Circular-Progressbar libraries.
 
